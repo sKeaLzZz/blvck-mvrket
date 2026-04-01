@@ -118,11 +118,11 @@
         }
         .jade-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(24, 152, 115, 0.2) 0%, transparent 70%); opacity: 0; transition: opacity 0.5s ease;
+            background: radial-gradient(circle at center, rgba(24, 152, 115, 0.2) 0%, transparent 70%); opacity: 0; transition: opacity 0.5s ease; pointer-events: none; z-index: 2;
         }
         .jade-card:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         .jade-card:hover::before { opacity: 1; }
-        .jade-card img { width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 0.9;}
+        .jade-card img, .jade-card video { width: 100%; height: 100%; object-fit: cover; z-index: 1; border-radius: 4px;}
 
         /* --- SOCIAL MEDIA PREVIEW GRID --- */
         .studios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
@@ -161,7 +161,7 @@
         
         .main-pendant {
             width: 240px; height: 240px; 
-            background: url('Bling BMJ.png') center/cover;
+            background: url('image.png') center/cover; /* Replaced with the new real photo */
             border-radius: 50%; margin-bottom: 30px; border: 4px solid #f8f8f8;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: all 0.4s ease;
         }
@@ -188,18 +188,20 @@
         }
         .btn-black:hover { background: #222; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
-        /* --- CLIENT SPOTLIGHT & LEGACY (Character Art Integration) --- */
+        /* --- CLIENT SPOTLIGHT & LEGACY --- */
         .spotlight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
         .spotlight-card {
             background: #eee; aspect-ratio: 3/4; border-radius: 6px; position: relative;
-            background-size: cover; background-position: center; transition: transform 0.5s var(--ease-lux);
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+            transition: transform 0.5s var(--ease-lux);
             box-shadow: 0 10px 20px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid var(--border-gray);
         }
         .spotlight-card:hover { transform: translateY(-10px); box-shadow: 0 20px 30px rgba(0,0,0,0.1); border-color: var(--gold); }
+        .spotlight-card img, .spotlight-card video { width: 100%; height: 100%; object-fit: cover; }
         
         .quote-box {
             position: absolute; bottom: -20px; left: 5%; width: 90%; background: #fff;
-            padding: 15px; font-size: 0.7rem; font-style: italic; text-align: center;
+            padding: 15px; font-size: 0.7rem; font-style: italic; text-align: center; z-index: 5;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 4px; color: #333; border-bottom: 2px solid var(--gold);
         }
 
@@ -208,7 +210,7 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
         .legacy-image {
-            flex: 1; background: url('2560 x 1440 p.png') center/cover; min-height: 300px;
+            flex: 1; background: url('2560\ x\ 1440\ p.png') center/cover; min-height: 300px;
         }
         .legacy-text-content {
             flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center;
@@ -375,22 +377,35 @@
         <div class="reveal delay-1">
             <h2 class="section-title" style="margin-bottom: 20px;">SIGNATURE VAULT</h2>
             <div class="jade-grid" style="margin-bottom: 60px;">
-                <div class="jade-card"><img src="OriginalPiece.jpg" alt="Original HVB Piece"></div>
-                <div class="jade-card"><img src="BlvckMvrketEmblem.jpg" alt="Blvck Mvrket Emblem"></div>
-                <div class="jade-card"><img src="Bling BMJ.png" alt="Glowing Jade Pendant"></div>
-                <div class="jade-card"><img src="BlvckMvrketwBlur.jpg" alt="Stylized Jade Backdrop"></div>
+                <div class="jade-card"><img src="image.png" alt="Real HVB Pendant"></div>
+                <div class="jade-card"><video autoplay loop muted playsinline src="Products/c21fd817447356c2f9aab417a9d17342.mp4"></video></div>
+                <div class="jade-card"><video autoplay loop muted playsinline src="Products/IMG_5071.mov"></video></div>
+                <div class="jade-card"><img src="Products/IMG_1925.HEIC" alt="Custom Product"></div>
             </div>
         </div>
 
         <div class="reveal delay-2">
-            <h2 class="section-title">TRANSPARENCY</h2>
+            <h2 class="section-title" style="margin-bottom: 20px;">CLIENT SPOTLIGHT</h2>
+            <div class="spotlight-grid" style="margin-bottom: 60px;">
+                <div class="spotlight-card">
+                    <img src="Products/IMG_6360.HEIC" alt="Spotlight Piece 1">
+                </div>
+                <div class="spotlight-card">
+                    <video autoplay loop muted playsinline src="Products/f3b8f75491cb6171fb93f5d7776f36ee.mov"></video>
+                    <div class="quote-box">"Setting the standard for the culture."</div>
+                </div>
+                <div class="spotlight-card">
+                    <img src="Products/IMG_8772.HEIC" alt="Spotlight Piece 2">
+                </div>
+            </div>
+        </div>
+
+        <div class="reveal delay-2">
+            <h2 class="section-title">THE LEGACY</h2>
             <div class="legacy-wrapper">
                 <div class="legacy-image"></div>
                 <div class="legacy-text-content">
-                    <p>Diamonds from pressure, same way we built.  Jade for the balance, mind focused and still. Custom everything, hard to duplicate.Every piece got a soul, you cannot replicate.</p>
-                    <br>
-                <div class="legacy-text-content">
-                    <h2>Blvck Mvrket Studios by Mecc</h2>
+                    <h2>Mecc & The HVB Vision</h2>
                     <p>Blending timeless craftsmanship with modern luxury. Blvck Mvrket specializes in creating elite custom pieces in silver and 10kt-24kt gold, alongside our signature custom jade work. We don't follow the culture; we carve it. Everything is custom-built for the visionary.</p>
                     <br>
                     <a href="https://beacons.ai/blvckmvrketjewelry" target="_blank" class="btn-black" style="display: inline-block; width: max-content;">Connect via Beacons</a>
