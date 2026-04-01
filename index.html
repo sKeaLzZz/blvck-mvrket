@@ -17,212 +17,154 @@
             --gold: #d4af37;
             --gold-light: #f5e8b7;
             --black: #000000;
-            --dark-bg: #07090d;
             --text-gray: #666;
             --border-gray: #e5e5e5;
             --font-head: 'Montserrat', sans-serif;
             --font-body: 'Inter', sans-serif;
-            /* High-end animation timing */
             --ease-lux: cubic-bezier(0.25, 1, 0.5, 1); 
         }
 
         body { 
-            background-color: #111; 
-            color: #333; 
+            background-color: #111; color: #333; 
             font-family: var(--font-body);
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
+            overflow-x: hidden; scroll-behavior: smooth;
         }
 
         .app-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            max-width: 1400px; margin: 0 auto;
+            background-color: #ffffff; box-shadow: 0 0 50px rgba(0,0,0,0.8);
             overflow: hidden;
         }
 
         /* --- SCROLL REVEAL ANIMATIONS --- */
         .reveal {
-            opacity: 0;
-            transform: translateY(40px);
+            opacity: 0; transform: translateY(40px);
             transition: opacity 0.8s var(--ease-lux), transform 0.8s var(--ease-lux);
             will-change: opacity, transform;
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
 
-        /* --- HEADER (Glassmorphism) --- */
+        /* --- HEADER --- */
         header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 25px 40px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.4s var(--ease-lux);
+            display: flex; flex-direction: column; align-items: center;
+            padding: 25px 40px; position: sticky; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05); transition: all 0.4s var(--ease-lux);
         }
 
-        .header-icons {
-            position: absolute;
-            right: 40px;
-            top: 35px;
-            display: flex;
-            gap: 20px;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
+        .header-icons { position: absolute; right: 40px; top: 35px; display: flex; gap: 20px; font-size: 1.2rem; cursor: pointer; }
         .logo-container { text-align: center; margin-bottom: 15px; }
-        .logo {
-            font-family: var(--font-head);
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--black);
-        }
+        .logo { font-family: var(--font-head); font-size: 2.2rem; font-weight: 800; letter-spacing: 2px; color: var(--black); }
         .logo span.v { color: var(--jade); position: relative; cursor: crosshair; transition: text-shadow 0.3s;}
         .logo span.rket { color: var(--gold); }
         .logo-sub { font-size: 0.65rem; letter-spacing: 6px; color: #777; text-transform: uppercase; margin-top: 5px; font-weight: 500;}
 
         nav ul { display: flex; list-style: none; gap: 30px; }
         nav a {
-            text-decoration: none;
-            color: var(--text-gray);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-            position: relative;
+            text-decoration: none; color: var(--text-gray); font-size: 0.75rem;
+            font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+            transition: color 0.3s ease; position: relative;
         }
         nav a::after {
             content: ''; position: absolute; width: 0; height: 1px;
-            bottom: -4px; left: 0; background-color: var(--jade);
-            transition: width 0.3s var(--ease-lux);
+            bottom: -4px; left: 0; background-color: var(--jade); transition: width 0.3s var(--ease-lux);
         }
         nav a:hover { color: var(--black); }
         nav a:hover::after, nav a.active::after { width: 100%; }
         nav a.active { color: var(--jade); }
 
-        /* --- HERO SECTION (Parallax) --- */
+        /* --- HERO SECTION (VIDEO BACKGROUND) --- */
         .hero {
-            display: flex;
-            background: linear-gradient(rgba(7, 9, 13, 0.8), rgba(7, 9, 13, 0.95)), url('https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
-            background-attachment: fixed; /* CSS Parallax fallback */
-            color: #fff;
-            padding: 80px 5%;
-            align-items: center;
-            position: relative;
-            min-height: 80vh;
+            position: relative; display: flex; justify-content: center; align-items: center;
+            min-height: 85vh; overflow: hidden; background: #000;
         }
 
-        .hero-image { flex: 1; display: flex; justify-content: center; }
-        .hero-image img {
-            width: 400px; height: 400px; object-fit: contain;
-            background: radial-gradient(circle at 30% 30%, #1a8a68, #072e22);
-            border-radius: 50%; border: 6px solid rgba(255,255,255,0.1);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 2px var(--gold);
-            animation: float 6s ease-in-out infinite;
+        .hero-bg-video {
+            position: absolute; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%; width: auto; height: auto;
+            transform: translate(-50%, -50%); z-index: 0; object-fit: cover; opacity: 0.7; 
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 100%); z-index: 1;
         }
 
-        .hero-content { flex: 1; text-align: center; padding-left: 20px; }
-        .hero-content h1 {
-            font-family: var(--font-head); font-size: 2.8rem; font-weight: 700;
-            margin-bottom: 15px; letter-spacing: 2px; text-transform: uppercase;
-        }
-        .hero-content p { font-size: 1.1rem; color: #ccc; margin-bottom: 35px; line-height: 1.6; font-weight: 300;}
-        .hero-content p strong { color: #fff; display: block; margin-top: 15px; font-weight: 500; font-size: 1.2rem;}
+        .hero-content { position: relative; z-index: 2; text-align: center; color: #fff; padding: 0 20px; max-width: 800px; }
+        .hero-content h1 { font-family: var(--font-head); font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: 3px; text-transform: uppercase; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.2rem; color: #ddd; margin-bottom: 35px; line-height: 1.6; font-weight: 400; text-shadow: 0 2px 10px rgba(0,0,0,0.8);}
 
         .btn-shop {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
-            color: #000; padding: 16px 40px; font-weight: 700; font-family: var(--font-head);
-            letter-spacing: 2px; text-decoration: none; font-size: 0.85rem;
-            border-radius: 2px; position: relative; overflow: hidden;
+            display: inline-block; background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+            color: #000; padding: 18px 45px; font-weight: 800; font-family: var(--font-head);
+            letter-spacing: 2px; text-decoration: none; font-size: 0.9rem; border-radius: 2px;
             transition: transform 0.4s var(--ease-lux), box-shadow 0.4s var(--ease-lux);
-            box-shadow: inset 10px 0 0 var(--jade), inset -10px 0 0 var(--jade);
+            box-shadow: inset 10px 0 0 var(--jade), inset -10px 0 0 var(--jade), 0 10px 20px rgba(0,0,0,0.5);
         }
-        .btn-shop:hover {
-            transform: translateY(-3px);
-            box-shadow: inset 10px 0 0 var(--jade), inset -10px 0 0 var(--jade), 0 15px 30px rgba(212, 175, 55, 0.3);
-        }
+        .btn-shop:hover { transform: translateY(-3px); box-shadow: inset 10px 0 0 var(--jade), inset -10px 0 0 var(--jade), 0 15px 30px rgba(212, 175, 55, 0.4); }
 
         /* --- LAYOUT GRIDS --- */
         .layout-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; padding: 60px 5%; gap: 60px; }
-        .section-title {
-            text-align: center; font-family: var(--font-head); font-size: 1.4rem;
-            font-weight: 700; margin-bottom: 30px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--black);
-        }
+        .section-title { text-align: center; font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; margin-bottom: 30px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--black); }
 
-        /* --- EXCLUSIVE JADE --- */
+        /* --- SIGNATURE PIECES GRID --- */
         .jade-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
         .jade-card {
-            background-color: #0a0a0a; aspect-ratio: 1; border-radius: 4px;
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid #222; cursor: pointer;
-            transition: all 0.5s var(--ease-lux);
-            position: relative; overflow: hidden;
+            background-color: #0a0a0a; aspect-ratio: 1; border-radius: 4px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid #222; transition: all 0.5s var(--ease-lux); position: relative; overflow: hidden;
         }
         .jade-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(24, 152, 115, 0.2) 0%, transparent 70%);
-            opacity: 0; transition: opacity 0.5s ease;
+            background: radial-gradient(circle at center, rgba(24, 152, 115, 0.2) 0%, transparent 70%); opacity: 0; transition: opacity 0.5s ease;
         }
         .jade-card:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         .jade-card:hover::before { opacity: 1; }
-        .jade-card img { max-width: 75%; max-height: 75%; object-fit: contain; z-index: 1; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));}
+        .jade-card img { width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 0.9;}
 
-        /* --- STUDIOS --- */
+        /* --- SOCIAL MEDIA PREVIEW GRID --- */
         .studios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .video-thumb {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80') center/cover;
-            aspect-ratio: 16/10; border-radius: 4px; position: relative;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; overflow: hidden; transition: all 0.5s var(--ease-lux);
-        }
-        .video-thumb:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.3); border: 1px solid var(--gold);}
         
-        .play-btn {
-            background: rgba(0,0,0,0.6); border: 2px solid #fff; color: #fff;
-            width: 45px; height: 45px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.9rem; padding-left: 3px; backdrop-filter: blur(4px);
-            transition: all 0.4s var(--ease-lux);
+        .social-card {
+            display: block; text-decoration: none; position: relative; border-radius: 4px; overflow: hidden;
+            aspect-ratio: 9/16; background-color: #000;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: all 0.4s var(--ease-lux); border: 1px solid var(--border-gray);
         }
-        .video-thumb:hover .play-btn { background: var(--gold); border-color: var(--gold); color: #000; transform: scale(1.15); }
-        .studio-caption { text-align: center; font-size: 0.75rem; margin-top: 20px; font-weight: 700; color: #777; letter-spacing: 1px; }
+        .social-bg-video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; filter: brightness(0.6); transition: filter 0.4s ease;
+        }
+        .social-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); z-index: 1;
+        }
+        .social-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.2); border-color: var(--gold); }
+        .social-card:hover .social-bg-video { filter: brightness(0.8); }
+        .social-card:hover .play-icon { transform: translate(-50%, -50%) scale(1.2); color: var(--gold); }
+
+        .social-badge {
+            position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: #fff;
+            padding: 4px 10px; font-size: 0.65rem; font-weight: 700; border-radius: 20px; z-index: 2; backdrop-filter: blur(4px); letter-spacing: 1px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2);
+        }
+        .social-info { position: absolute; bottom: 15px; left: 15px; z-index: 2; color: #fff; width: 85%; }
+        .social-info h4 { font-size: 0.8rem; font-weight: 600; margin-bottom: 5px; line-height: 1.3;}
+        .social-info p { font-size: 0.65rem; color: #ddd; font-weight: 300;}
+        .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; color: rgba(255,255,255,0.8); z-index: 2; transition: all 0.3s ease; }
+
+        .yt-card { aspect-ratio: 16/10; grid-column: span 2; } 
 
         /* --- CUSTOM JADE UI --- */
         .config-ui { display: flex; border: 1px solid var(--border-gray); border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
         .config-left { flex: 1.2; padding: 40px 20px; border-right: 1px solid var(--border-gray); display: flex; flex-direction: column; align-items: center; background: #fff; }
         .config-title { font-family: var(--font-head); font-size: 0.9rem; font-weight: 700; align-self: flex-start; margin-bottom: 30px; text-transform: uppercase;}
+        
         .main-pendant {
-            width: 200px; height: 200px; background: radial-gradient(circle, var(--jade) 20%, #0a4d38);
-            border-radius: 50%; margin-bottom: 30px; border: 6px solid #f8f8f8;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
+            width: 240px; height: 240px; 
+            background: url('Bling BMJ.png') center/cover;
+            border-radius: 50%; margin-bottom: 30px; border: 4px solid #f8f8f8;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: all 0.4s ease;
         }
-        .thumb-row { display: flex; gap: 15px; align-items: center; }
-        .thumb-circle { width: 40px; height: 40px; background: var(--jade); border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: all 0.3s ease;}
-        .thumb-circle:hover { transform: translateY(-3px); }
-        .thumb-circle.active { border-color: var(--gold); transform: scale(1.1); box-shadow: 0 5px 15px rgba(212,175,55,0.4); }
 
         .config-right { flex: 1; padding: 30px; background-color: #fafafa; display: flex; flex-direction: column; }
         .config-group { margin-bottom: 25px; }
@@ -244,68 +186,78 @@
             margin-top: auto; font-family: var(--font-head); letter-spacing: 1px; text-transform: uppercase;
             transition: background 0.3s, transform 0.3s;
         }
-        .btn-black:hover { background: #222; transform: translateY(-2px); }
+        .btn-black:hover { background: #222; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
-        /* --- CLIENT SPOTLIGHT & LEGACY --- */
+        /* --- CLIENT SPOTLIGHT & LEGACY (Character Art Integration) --- */
         .spotlight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
         .spotlight-card {
             background: #eee; aspect-ratio: 3/4; border-radius: 6px; position: relative;
             background-size: cover; background-position: center; transition: transform 0.5s var(--ease-lux);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid var(--border-gray);
         }
-        .spotlight-card:hover { transform: translateY(-10px); box-shadow: 0 20px 30px rgba(0,0,0,0.1); }
-        .spotlight-card:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1517598024396-46c53fb391a1?auto=format&fit=crop&w=400&q=80'); }
-        .spotlight-card:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80'); }
-        .spotlight-card:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80'); }
+        .spotlight-card:hover { transform: translateY(-10px); box-shadow: 0 20px 30px rgba(0,0,0,0.1); border-color: var(--gold); }
         
         .quote-box {
             position: absolute; bottom: -20px; left: 5%; width: 90%; background: #fff;
             padding: 15px; font-size: 0.7rem; font-style: italic; text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 4px; color: #333;
-            border-bottom: 2px solid var(--gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 4px; color: #333; border-bottom: 2px solid var(--gold);
         }
 
-        .legacy-section { margin-top: 60px; text-align: center; padding: 30px; background: #fcfcfc; border-radius: 8px; border: 1px solid #eee; }
-        .legacy-section p { font-size: 0.85rem; color: #666; line-height: 1.8; max-width: 90%; margin: 0 auto; font-weight: 300;}
+        .legacy-wrapper {
+            display: flex; background: #fcfcfc; border-radius: 8px; border: 1px solid #eee; overflow: hidden; margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .legacy-image {
+            flex: 1; background: url('2560 x 1440 p.png') center/cover; min-height: 300px;
+        }
+        .legacy-text-content {
+            flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center;
+        }
+        .legacy-text-content h2 { font-family: var(--font-head); font-size: 1.4rem; color: var(--black); margin-bottom: 15px;}
+        .legacy-text-content p { font-size: 0.9rem; color: #555; line-height: 1.8; font-weight: 300;}
 
-        /* --- FOOTER --- */
+        /* --- FOOTER & QR CODE --- */
         footer {
-            background-color: #050505; color: #fff; padding: 40px 5%;
-            display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem;
-            border-top: 2px solid var(--gold);
+            background-color: #050505; color: #fff; padding: 60px 5% 40px;
+            display: flex; flex-direction: column; gap: 40px; align-items: center; font-size: 0.75rem;
+            border-top: 3px solid var(--gold);
         }
-        .footer-links { display: flex; gap: 30px; }
-        .footer-links a { color: #aaa; text-decoration: none; transition: color 0.3s; text-transform: uppercase; font-weight: 500; letter-spacing: 1px;}
-        .footer-links a:hover { color: var(--gold); }
+        .footer-top { display: flex; justify-content: space-between; width: 100%; align-items: center; }
+        
+        .footer-social-icons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .footer-social-icons a {
+            color: #fff; text-decoration: none; font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 1px; border: 1px solid #333; padding: 10px 15px; border-radius: 4px;
+            transition: all 0.3s ease; text-transform: uppercase; background: #111;
+        }
+        .footer-social-icons a:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
 
-        .footer-middle { display: flex; }
-        .footer-middle input { padding: 12px 20px; background: #111; border: 1px solid #333; color: #fff; outline: none; width: 250px; font-family: var(--font-body); border-radius: 4px 0 0 4px;}
-        .footer-middle input:focus { border-color: var(--gold); }
-        .footer-middle button { background: var(--gold); color: #000; border: none; padding: 12px 25px; font-weight: 700; cursor: pointer; border-radius: 0 4px 4px 0; font-family: var(--font-head); transition: opacity 0.3s;}
-        .footer-middle button:hover { opacity: 0.8; }
+        .footer-qr-container { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .footer-qr-container img { width: 100px; height: 100px; border-radius: 8px; border: 2px solid #fff; padding: 5px; background: #fff;}
+        .footer-qr-container p { font-family: var(--font-head); font-weight: 700; letter-spacing: 1px; color: var(--gold); text-transform: uppercase;}
+
+        .footer-bottom { display: flex; gap: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; justify-content: center; }
+        .footer-bottom a { color: #888; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s;}
+        .footer-bottom a:hover { color: #fff; }
 
         /* --- VAULT EASTER EGG --- */
         #vault-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5,5,5,0.98); z-index: 9999; display: flex;
-            flex-direction: column; justify-content: center; align-items: center;
+            background: rgba(5,5,5,0.98); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: opacity 0.5s ease; backdrop-filter: blur(10px);
         }
         #vault-overlay.active { opacity: 1; pointer-events: all; }
         .vault-input {
-            background: transparent; border: none; border-bottom: 2px solid var(--gold);
-            color: #fff; font-size: 2rem; text-align: center; outline: none; letter-spacing: 10px;
-            font-family: 'Courier New', monospace; margin-bottom: 20px; width: 300px;
+            background: transparent; border: none; border-bottom: 2px solid var(--gold); color: #fff; font-size: 2rem;
+            text-align: center; outline: none; letter-spacing: 10px; font-family: 'Courier New', monospace; margin-bottom: 20px; width: 300px;
         }
 
         @media (max-width: 900px) {
             .layout-grid { grid-template-columns: 1fr; gap: 40px; }
-            .hero { flex-direction: column-reverse; text-align: center; padding-top: 120px; }
-            .hero-content { padding-left: 0; margin-top: 30px; }
             .config-ui { flex-direction: column; }
             .config-left { border-right: none; border-bottom: 1px solid var(--border-gray); }
-            footer { flex-direction: column; gap: 30px; text-align: center; }
-            .footer-links { flex-wrap: wrap; justify-content: center; }
+            .legacy-wrapper { flex-direction: column; }
+            .footer-top { flex-direction: column; gap: 30px; text-align: center; }
         }
     </style>
 </head>
@@ -322,58 +274,33 @@
         <nav>
             <ul>
                 <li><a href="#" class="active">Home</a></li>
-                <li><a href="#vault">The Vault</a></li>
                 <li><a href="#custom">Custom Lab</a></li>
-                <li><a href="#studio">Studio</a></li>
+                <li><a href="#feed">Mvrket Feed</a></li>
+                <li><a href="https://beacons.ai/blvckmvrketjewelry" target="_blank" rel="noopener" style="color: var(--jade);">Link in Bio</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="hero reveal">
-        <div class="hero-image">
-            <img src="https://via.placeholder.com/400x400/0a4d38/189873?text=BMV+Crest" alt="Jade Pendant">
-        </div>
+        <video autoplay loop muted playsinline class="hero-bg-video">
+            <source src="Video_Animation_With_Diamonds_And_Gold.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>THE EMERALD STANDARD</h1>
-            <p>Hand-Carved Jade. Iced by Masters.<br>Exclusive. Personal.<br><strong>THE MODERN LEGACY.</strong></p>
-            <a href="#vault" class="btn-shop">SHOP THE COLLECTION</a>
+            <p>Hand-Carved Jade. Iced by Masters.<br>Exclusive. Personal. The Modern Legacy.</p>
+            <a href="#feed" class="btn-shop">WATCH THE PROCESS</a>
         </div>
     </div>
 
-    <div class="layout-grid" id="vault">
-        <div class="reveal delay-1">
-            <h2 class="section-title">SIGNATURE PIECES</h2>
-            <div class="jade-grid">
-                <div class="jade-card"><img src="https://via.placeholder.com/150x150/000/189873?text=Ring" alt="Ring"></div>
-                <div class="jade-card"><img src="https://via.placeholder.com/150x150/000/189873?text=Pendant" alt="Pendant"></div>
-                <div class="jade-card"><img src="https://via.placeholder.com/150x150/000/189873?text=Grillz" alt="Grillz"></div>
-                <div class="jade-card"><img src="https://via.placeholder.com/150x150/000/189873?text=Chain" alt="Chain"></div>
-            </div>
-        </div>
-
-        <div class="reveal delay-2" id="studio">
-            <h2 class="section-title">BMV STUDIOS</h2>
-            <div class="studios-grid">
-                <div class="video-thumb"><div class="play-btn">▶</div></div>
-                <div class="video-thumb"><div class="play-btn">▶</div></div>
-                <div class="video-thumb"><div class="play-btn">▶</div></div>
-                <div class="video-thumb"><div class="play-btn">▶</div></div>
-            </div>
-            <div class="studio-caption">BEHIND THE SCENES: RAW STONE TO ICON</div>
-        </div>
-    </div>
-
-    <div class="layout-grid" style="padding-top: 0;" id="custom">
-        <div class="reveal delay-1">
+    <div class="layout-grid">
+        
+        <div class="reveal delay-1" id="custom">
             <h2 class="section-title">THE CUSTOM LAB</h2>
             <div class="config-ui">
                 <div class="config-left">
                     <div class="config-title">Preview Base</div>
-                    <div class="main-pendant" id="pendant-preview"></div>
-                    <div class="thumb-row">
-                        <div class="thumb-circle active"></div>
-                        <div class="thumb-circle"></div>
-                    </div>
+                    <div class="main-pendant" id="pendant-preview" title="Custom HVB Pendant Preview"></div>
                 </div>
                 <div class="config-right">
                     <div class="config-title" style="background:#fff; padding:8px 12px; border-radius:4px; border:1px solid #ddd; font-size: 0.75rem;">Select Specs</div>
@@ -381,9 +308,9 @@
                     <div class="config-group" style="margin-top: 15px;">
                         <h4>Jadeite Grade (Type A)</h4>
                         <div class="color-row">
-                            <div onclick="changeColor('#9bd6a3')"><div class="color-box active" style="background: #9bd6a3;"></div><div class="color-label">Imperial</div></div>
-                            <div onclick="changeColor('#19693b')"><div class="color-box" style="background: #19693b;"></div><div class="color-label">Deep Forrest</div></div>
-                            <div onclick="changeColor('#0f4d30')"><div class="color-box" style="background: #0f4d30;"></div><div class="color-label">Ocean Teal</div></div>
+                            <div onclick="document.getElementById('pendant-preview').style.filter = 'hue-rotate(0deg)'"><div class="color-box active" style="background: #189873;"></div><div class="color-label">Imperial</div></div>
+                            <div onclick="document.getElementById('pendant-preview').style.filter = 'hue-rotate(20deg) brightness(0.8)'"><div class="color-box" style="background: #0f624a;"></div><div class="color-label">Deep Forrest</div></div>
+                            <div onclick="document.getElementById('pendant-preview').style.filter = 'hue-rotate(-20deg) brightness(1.2)'"><div class="color-box" style="background: #20c997;"></div><div class="color-label">Ocean Teal</div></div>
                         </div>
                     </div>
 
@@ -400,37 +327,98 @@
                         </select>
                     </div>
 
-                    <a href="#" class="btn-black">Request Commission</a>
+                    <a href="https://www.instagram.com/blvckmvrket.jewelry" target="_blank" rel="noopener" class="btn-black">DM to Commission</a>
                 </div>
             </div>
         </div>
 
-        <div class="reveal delay-2">
-            <h2 class="section-title">CLIENT SPOTLIGHT</h2>
-            <div class="spotlight-grid">
-                <div class="spotlight-card"></div>
-                <div class="spotlight-card">
-                    <div class="quote-box">"Setting the standard for the culture."</div>
-                </div>
-                <div class="spotlight-card"></div>
-            </div>
+        <div class="reveal delay-2" id="feed">
+            <h2 class="section-title">MVRKET FEED</h2>
+            <div class="studios-grid">
+                
+                <a href="https://www.tiktok.com/@degadmecc" target="_blank" rel="noopener" class="social-card">
+                    <video autoplay loop muted playsinline class="social-bg-video"><source src="Video 2.MP4" type="video/mp4"></video>
+                    <span class="social-badge" style="background: rgba(0,0,0,0.8);">TIKTOK</span>
+                    <div class="play-icon">▶</div>
+                    <div class="social-info">
+                        <h4>@degadmecc</h4>
+                        <p>Watch the latest custom grillz & chain drops.</p>
+                    </div>
+                </a>
 
-            <div class="legacy-section">
-                <h2 class="section-title" style="font-size: 1rem; margin-bottom: 15px;">THE LEGACY</h2>
-                <p>Blending timeless craftsmanship with modern luxury. We specialize in creating elite custom pieces in silver and 10kt-24kt gold, alongside our signature custom jade work. We don't follow the culture; we carve it.</p>
+                <a href="https://www.instagram.com/blvckmvrket.jewelry" target="_blank" rel="noopener" class="social-card">
+                    <video autoplay loop muted playsinline class="social-bg-video"><source src="Character_Forms_HVB_With_Gold_Dust.mp4" type="video/mp4"></video>
+                    <span class="social-badge" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">INSTAGRAM</span>
+                    <div class="play-icon">▶</div>
+                    <div class="social-info">
+                        <h4>@blvckmvrket.jewelry</h4>
+                        <p>Behind the scenes & exclusive DM custom orders.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/@BlvckMvrket7oh4" target="_blank" rel="noopener" class="social-card yt-card">
+                    <video autoplay loop muted playsinline class="social-bg-video"><source src="Character_Waves_Wand_Drawing_HVB.mp4" type="video/mp4"></video>
+                    <span class="social-badge" style="background: #FF0000;">YOUTUBE</span>
+                    <div class="play-icon" style="font-size: 3rem;">▶</div>
+                    <div class="social-info">
+                        <h4>BlvckMvrket7oh4</h4>
+                        <p>Full-length jade carving documentaries and studio vlogs.</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div style="padding: 0 5% 60px;">
+        
+        <div class="reveal delay-1">
+            <h2 class="section-title" style="margin-bottom: 20px;">SIGNATURE VAULT</h2>
+            <div class="jade-grid" style="margin-bottom: 60px;">
+                <div class="jade-card"><img src="OriginalPiece.jpg" alt="Original HVB Piece"></div>
+                <div class="jade-card"><img src="BlvckMvrketEmblem.jpg" alt="Blvck Mvrket Emblem"></div>
+                <div class="jade-card"><img src="Bling BMJ.png" alt="Glowing Jade Pendant"></div>
+                <div class="jade-card"><img src="BlvckMvrketwBlur.jpg" alt="Stylized Jade Backdrop"></div>
+            </div>
+        </div>
+
+        <div class="reveal delay-2">
+            <h2 class="section-title">TRANSPARENCY</h2>
+            <div class="legacy-wrapper">
+                <div class="legacy-image"></div>
+                <div class="legacy-text-content">
+                    <p>Diamonds from pressure, same way we built.  Jade for the balance, mind focused and still. Custom everything, hard to duplicate.Every piece got a soul, you cannot replicate.</p>
+                    <br>
+                <div class="legacy-text-content">
+                    <h2>Blvck Mvrket Studios by Mecc</h2>
+                    <p>Blending timeless craftsmanship with modern luxury. Blvck Mvrket specializes in creating elite custom pieces in silver and 10kt-24kt gold, alongside our signature custom jade work. We don't follow the culture; we carve it. Everything is custom-built for the visionary.</p>
+                    <br>
+                    <a href="https://beacons.ai/blvckmvrketjewelry" target="_blank" class="btn-black" style="display: inline-block; width: max-content;">Connect via Beacons</a>
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <div class="footer-links">
+        <div class="footer-top">
+            <div class="footer-social-icons">
+                <a href="https://www.instagram.com/blvckmvrket.jewelry" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.tiktok.com/@degadmecc" target="_blank" rel="noopener">TikTok</a>
+                <a href="https://www.youtube.com/@BlvckMvrket7oh4" target="_blank" rel="noopener">YouTube</a>
+                <a href="https://beacons.ai/blvckmvrketjewelry" target="_blank" rel="noopener" style="border-color: var(--jade); color: var(--jade);">Beacons</a>
+            </div>
+            
+            <div class="footer-qr-container">
+                <img src="BlvckMvrketJewelry704-qr.png" alt="Scan to connect with Blvck Mvrket">
+                <p>Scan to Connect</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
             <a href="#">Returns</a>
             <a href="#">FAQ</a>
             <a href="#">GIA Certification</a>
-        </div>
-        <div class="footer-middle">
-            <input type="email" placeholder="Join the Inner Circle">
-            <button>SUBSCRIBE</button>
+            <span style="color: #444;">&copy; 2026 BLVCK MVRKET STUDIOS</span>
         </div>
     </footer>
 </div>
@@ -438,25 +426,24 @@
 <div id="vault-overlay">
     <h2 style="color: var(--jade); font-family: 'Courier New', monospace; letter-spacing: 5px; margin-bottom: 30px;">RESTRICTED ACCESS</h2>
     <input type="password" class="vault-input" id="vault-pass" placeholder="ENTER KEY" maxlength="8">
-    <button class="btn-shop" onclick="checkPass()" style="background: var(--gold); border: none; font-family: 'Courier New', monospace;">UNLOCK</button>
+    <button class="btn-shop" onclick="checkPass()" style="background: var(--gold); border: none; font-family: 'Courier New', monospace; box-shadow: none;">UNLOCK</button>
     <button onclick="closeVault()" style="background: transparent; border: none; color: #555; margin-top: 40px; cursor: pointer; font-family: 'Courier New', monospace;">[ ABORT ]</button>
 </div>
 
 <script>
-    // 1. SCROLL REVEAL ANIMATIONS (Intersection Observer)
+    // SCROLL REVEAL ANIMATIONS
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Only animate once
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
-    
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // 2. HEADER SHRINK ON SCROLL
+    // HEADER SHRINK ON SCROLL
     window.addEventListener('scroll', () => {
         const header = document.querySelector('header');
         if (window.scrollY > 50) {
@@ -468,26 +455,12 @@
         }
     });
 
-    // 3. CUSTOM CONFIGURATOR LOGIC
-    function changeColor(hexCode) {
-        document.getElementById('pendant-preview').style.background = `radial-gradient(circle, ${hexCode} 20%, #052217)`;
-        // Update active UI state
-        document.querySelectorAll('.color-box').forEach(box => box.classList.remove('active'));
-        event.target.classList.add('active');
-    }
-
-    // 4. THE 3-TAP SECRET VAULT EASTER EGG
+    // 3-TAP SECRET VAULT EASTER EGG
     const secretV = document.querySelector('.logo span.v');
-    let clicks = 0;
-    let timer;
-
+    let clicks = 0; let timer;
     secretV.addEventListener('click', () => {
-        clicks++;
-        clearTimeout(timer);
-        
-        // Haptic/Visual feedback
-        secretV.style.color = '#fff';
-        secretV.style.textShadow = '0 0 15px var(--jade)';
+        clicks++; clearTimeout(timer);
+        secretV.style.color = '#fff'; secretV.style.textShadow = '0 0 15px var(--jade)';
         setTimeout(() => { secretV.style.color = 'var(--jade)'; secretV.style.textShadow = 'none'; }, 200);
 
         if (clicks === 3) {
@@ -495,26 +468,19 @@
             document.body.style.overflow = 'hidden';
             document.getElementById('vault-pass').focus();
             clicks = 0;
-        } else {
-            timer = setTimeout(() => { clicks = 0; }, 1000);
-        }
+        } else { timer = setTimeout(() => { clicks = 0; }, 1000); }
     });
 
     function checkPass() {
-        const pass = document.getElementById('vault-pass').value.toUpperCase();
-        if(pass === 'JADE24') {
-            alert('ACCESS GRANTED: Connecting to secure server...');
-            closeVault();
+        if(document.getElementById('vault-pass').value.toUpperCase() === 'JADE24') {
+            alert('ACCESS GRANTED: Connecting to secure server...'); closeVault();
         } else {
-            alert('ACCESS DENIED.');
-            document.getElementById('vault-pass').value = '';
+            alert('ACCESS DENIED.'); document.getElementById('vault-pass').value = '';
         }
     }
-
     function closeVault() {
         document.getElementById('vault-overlay').classList.remove('active');
-        document.body.style.overflow = 'auto';
-        document.getElementById('vault-pass').value = '';
+        document.body.style.overflow = 'auto'; document.getElementById('vault-pass').value = '';
     }
 </script>
 
